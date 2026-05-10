@@ -1,10 +1,10 @@
-\chapter{Phonology: Structural Sound Laws}
+\chapter{Phonology: The Multimodal Sound Law Engine}
 
-\section{The Glottalic Shift Law}
-The foundational phonological feature of the PED reconstruction is the hypothesized series of three ejective stops: \textit{*P', *T', *K'}. These sounds are proposed as the unstable precursors to the disparate stop systems found in the daughter languages.
+\section{The Glottalic Invariant and Secondary Shifts}
+Previous iterations of the PED hypothesis were criticized for using 'idealized' linguistic forms that smoothed over the documented phonetic history of the daughter languages. This study implements a complex, environment-sensitive sound law engine that accounts for secondary developments occurring between the PED horizon (c. 10,000 BP) and the earliest attested literary strata.
 
-\subsection{Consonantal Divergence Matrix}
-The evolution of the PED stop series follows deterministic trajectories within each major node:
+\section{The Glottalic Shift Law (Primary)}
+The foundational phonetic transformation remains the divergence of the ancestral ejective stop series (\textit{*P', *T', *K'}). 
 \begin{table}[h]
 \centering
 \begin{tabular}{@{}lccc@{}} \toprule
@@ -13,27 +13,31 @@ The evolution of the PED stop series follows deterministic trajectories within e
 \textbf{*T' (Dental)} & d & t & th \\
 \textbf{*K' (Velar)} & g & k & kh \\ \bottomrule
 \end{tabular}
-\caption{The Grand Consonantal Divergence Matrix.}
+\caption{The Primary Glottalic Shift Matrix.}
 \end{table}
 
-\section{Positional Reflexes of the Laryngeal Invariant (*H)}
-The pharyngeal fricative \textit{*H} produced systematic positional effects, referred to as 'phonetic scarring', within the descendant strata.
+\section{Documented Secondary Developments}
+To achieve empirical contact with the primary data, the following secondary rules are applied to the PED outputs:
+
+\subsection{The Vedic Node (Indo-Aryan)}
 \begin{itemize}
-    \item \textbf{Compensatory Lengthening:} In the Southern branch, the loss of post-vocalic laryngeals led to the lengthening of preceding vowels (e.g., \textit{*keHṭ-} > Old Tamil \textit{kēṭ-u}).
-    \item \textbf{Vowel Coloring:} In the Western branch, the laryngeal influenced the quality of surrounding vowels before its eventual deletion.
-    \item \textbf{Tonogenesis:} In the Eastern branch, the loss of final laryngeals provided the phonetic basis for the emergence of lexical tone distinctions.
+    \item \textbf{Indo-European Vowel Merger:} Ancestral \textit{*e, *o, *a} merge into the single short vowel \textit{a} in the Vedic stratum.
+    \item \textbf{The Satem Shift:} Velar stops (\textit{*k, *g}) undergo palatalization to \textit{ś, j} when preceding high front vowels (\textit{*e, *i}).
+    \item \textbf{Grassmann's Law:} Dissimilation of aspirates in successive syllables.
 \end{itemize}
 
-\subsection{Summary of Laryngeal Effects}
-\begin{table}[h]
-\centering
-\begin{tabular}{llll} \toprule
-\textbf{Position} & \textbf{Vedic Reflex} & \textbf{Tamil Reflex} & \textbf{Tibetan Reflex} \\ \midrule
-Post-Vocalic & Length/Coloring & Lengthening & (Tone creation) \\
-Syllable Coda & Visarga (\d{h}) & \={A}ytam (ஃ) & Glottal Tone (') \\ \bottomrule
-\end{tabular}
-\caption{Systematic structural impact of the ancestral laryngeal.}
-\end{table}
+\subsection{The Tamil Node (Southern Dravidian)}
+\begin{itemize}
+    \item \textbf{Sibilant Palatalization:} Ancestral fricatives (\textit{*S-}) palatalize to \textit{c-} in initial position before front vowels.
+    \item \textbf{Intervocalic Lenition:} Plain stops undergo weakening and voicing in medial positions, though roots typically preserve the initial voiceless quality.
+\end{itemize}
 
-\section{Phonotactic Constraints}
-The PED phonological system was characterized by a strict CVC template. Consonant clusters were primarily restricted to morpheme boundaries, facilitating the agglutinative stacking of modular grammatical markers.
+\subsection{The Tibetan Node (Eastern Sino-Tibetan)}
+\begin{itemize}
+    \item \textbf{Palatalization:} Dental and velar onsets undergo palatalization (\textit{*T > sh}) before high front vowels.
+    \item \textbf{Prefixation and Coda Loss:} The development of complex prefix systems often obscures the original PED initial, while final codas frequently trigger tonogenesis.
+\end{itemize}
+
+\section{Consolidated Empirical Matrix}
+By integrating these secondary rules, we can derive the actual attested forms (e.g., Vedic \textit{daśa}) from the hypothesized PED roots (e.g., \textit{*T'eK'-}) without resorting to fabricated 'intermediate' forms.
+

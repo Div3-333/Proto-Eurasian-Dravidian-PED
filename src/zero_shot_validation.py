@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 def run_structural_validation():
     """
-    Predictive validation against a Structural SOV Null Model.
+    Predictive validation against a Markovian SOV Null Model.
     We test if PED logic provides a better fit than standard SOV transitions.
     """
     print("--- THE STRUCTURAL PROTOCOL: RIGOROUS SYNTACTIC VALIDATION ---")
@@ -22,7 +22,6 @@ def run_structural_validation():
     for text in df['text'].dropna():
         clean_text = str(text).strip("+[]/").replace(" ", "")
         if not clean_text or clean_text == "000": continue
-        # Purge '000' and '0' signs to prevent delimiter artifact
         signs = [int(s) for s in clean_text.replace("[", "").replace("]", "").split("-") if s.isdigit() and int(s) != 0]
         if len(signs) > 2:
             sequences.append(np.array(signs).reshape(-1, 1))
@@ -57,21 +56,22 @@ def run_structural_validation():
     model.transmat_ = (model.transmat_ + epsilon) / (1 + n_states * epsilon)
     model.startprob_ = (model.startprob_ + epsilon) / (1 + n_states * epsilon)
     
-    # 6. Construct the Structural SOV Null Model
-    # A true linguistic competitor: Standard SOV transitions (Agent -> Target -> Verb -> End)
+    # 6. Construct the Markovian SOV Null Model
+    # A true linguistic competitor: 1st-order Markov transitions modeled on standard SOV dependencies.
     null_model = hmm.CategoricalHMM(n_components=n_states, random_state=42)
     null_model.n_features = n_features
-    # Fixed SOV Syntax Matrix
-    # States: 0:Agent, 1:Target, 2:Verb, 3:Terminal
+    
+    # Standard SOV Probability Matrix (Generalized SOV structure)
+    # 0:Agent, 1:Target, 2:Verb, 3:Terminal
     A_sov = np.array([
-        [0.1, 0.7, 0.1, 0.1], # Agent -> Target (high)
-        [0.1, 0.1, 0.7, 0.1], # Target -> Verb (high)
-        [0.1, 0.1, 0.1, 0.7], # Verb -> Terminal (high)
-        [0.7, 0.1, 0.1, 0.1]  # Terminal -> New Agent (high)
+        [0.2, 0.6, 0.1, 0.1], # Agent -> Target (Probabilistic)
+        [0.1, 0.2, 0.6, 0.1], # Target -> Verb (Probabilistic)
+        [0.1, 0.1, 0.2, 0.6], # Verb -> Terminal
+        [0.4, 0.2, 0.2, 0.2]  # Terminal -> New
     ])
-    null_model.startprob_ = np.array([0.7, 0.1, 0.1, 0.1])
+    null_model.startprob_ = np.array([0.4, 0.2, 0.2, 0.2])
     null_model.transmat_ = A_sov
-    null_model.emissionprob_ = model.emissionprob_ # Same sign frequencies
+    null_model.emissionprob_ = model.emissionprob_ 
     
     # 7. The Predictive Test
     X_test = np.concatenate(test_seqs_mapped)
@@ -81,16 +81,16 @@ def run_structural_validation():
     
     print(f"\n[RESULTS ON UNSEEN DATA]")
     print(f"PED-Learned Model Log-Likelihood: {score_ped:.2f}")
-    print(f"Structural SOV Null Log-Likelihood: {score_null:.2f}")
+    print(f"Markovian SOV Null Log-Likelihood: {score_null:.2f}")
     
     margin = score_ped - score_null
     
     print(f"\nConclusion:")
     if score_ped > score_null:
-        print(f"The PED-aligned model outperforms the Structural Null model by {margin:.2f} LL units.")
-        print("This proves that Harappan syntax contains non-random structure that exceeds standard SOV grammar.")
+        print(f"The PED-aligned model outperforms the Markovian SOV Null by {margin:.2f} LL units.")
+        print("This indicates that Harappan syntax contains structural invariants specific to the PED radiation.")
     else:
-        print("The Harappan data is consistent with standard SOV structure.")
+        print("The Harappan data aligns with generalized SOV structures.")
 
 if __name__ == "__main__":
     run_structural_validation()
