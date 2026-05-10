@@ -1,33 +1,32 @@
-\chapter{Methodological Framework: The Adversarial Protocol}
+\chapter{Methodological Framework: Multi-Disciplinary Triangulation}
 
 \section{The Epistemological Horizon of Comparative Philology}
-Traditional comparative linguistics, since its formalization by the Neogrammarians in the 19th century, has been anchored by the \textit{Stammbaumtheorie} (family tree model). While this model has successfully reconstructed Proto-Indo-European (PIE) and Proto-Dravidian (PD) back to approximately 6,000–8,000 BP, it hits a seemingly impenetrable barrier at the 10,000-year mark. The fundamental problem is entropy: the gradual loss of phonetic and semantic signal over time.
+Traditional comparative linguistics has long been defined by the family tree model. While this framework successfully reconstructs language families back to approximately 6,000 to 8,000 BP, it faces significant challenges beyond the 10,000-year mark. The primary constraint is the accumulation of phonetic and semantic entropy, which tends to degrade genetic signals into statistical noise.
 
-\section{The Failure of Traditional Long-Range Comparison}
-Mainstream historical linguistics has rightfully viewed macro-family reconstructions (e.g., Nostratic, Eurasiatic) with extreme skepticism. The primary culprit is the 'look-alike' fallacy: the tendency for researchers to scan vast dictionaries for words that sound similar and share vague semantic links (e.g., 'fire' and 'burn'). 
+\section{Addressing the Limits of Long-Range Comparison}
+Macro-family reconstructions have historically been subject to criticism regarding the use of superficial lexical similarities. The 'look-alike' fallacy occurs when researchers scan extensive datasets for phonetically similar terms with related meanings. Given the scale of available linguistic data, such occurrences can be statistically expected and do not necessarily imply a common genetic origin.
 
-\subsection{Case Study: The Apophenia of Similarity}
-Consider the often-cited match between the English 'bad' and the Persian 'bad.' Despite the perfect phonetic and semantic alignment, these words are entirely unrelated etymologically—the English 'bad' derives from Old English \textit{bæddel}, while the Persian word has a distinct Indo-Iranian origin. Given a large enough dataset (thousands of dialects across three continents), such matches are statistically inevitable and mathematically meaningless. To claim genetic relationship based on similarity is to mistake statistical noise for a signal.
+\subsection{A Case Study in Accidental Similarity}
+The alignment between the English 'bad' and the Persian 'bad' illustrates this phenomenon. Despite phonetic and semantic equivalence, these terms possess distinct etymological origins. The English term derives from Old English \textit{bæddel}, while the Persian term follows a separate Indo-Iranian development. Such instances underscore the necessity of moving beyond simple pattern matching toward structural modeling.
 
-\section{The Adversarial Philology Protocol}
-To overcome the trap of confirmation bias, this project implemented the \textbf{Adversarial Philology Protocol}. Throughout the research cycle, a specialized 'Brutal Reviewer' (Reviewer 2) was tasked with dismantling the hypothesis at every stage. This forced the research to pivot from speculative pattern-matching to predictive structural modeling.
+\section{Structural Modeling and Signal Invariance}
+To mitigate the risk of confirmation bias, this study utilizes structural invariants and non-linear phonetic shifts. The hypothesis was subjected to iterative peer-review, focusing on the identification of systematic, predictive patterns rather than isolated lexical matches.
 
-\subsection{Methodological Evolution through Friction}
-An early iteration of the PED hypothesis was rejected for relying too heavily on 'Proto-to-Proto' comparison. The reviewer argued that comparing two theoretical reconstructions (e.g., PIE and Proto-Dravidian) merely compounds the errors inherent in each theory. This friction forced a fundamental shift to \textbf{Primary Data Anchoring}, using only the most archaic attested strata of Vedic Sanskrit, Old Tamil, and Old Tibetan as our foundational data points.
+\subsection{Primary Data Anchoring}
+The methodology utilizes primary attested data from archaic literary and archaeological strata, rather than second-order theoretical reconstructions. The primary anchors for this study are:
+\begin{enumerate}
+    \item \textbf{Vedic Sanskrit (c. 1500 BCE):} Providing the Western Indo-European data.
+    \item \textbf{Old Tamil (c. 300 BCE):} Providing the Southern Dravidian data.
+    \item \textbf{Old Tibetan (c. 700 CE):} Providing the Eastern Sino-Tibetan data.
+\end{enumerate}
 
 \section{The Non-Linear Signal Constraint}
-We established a strict constraint: no lexical item is accepted as evidence unless it follows a non-linear phonetic shift. A valid PED root must exhibit the \textbf{Glottalic Shift Matrix}. This shift requires a 'triangulation' of three distinct phonetic outcomes, making the probability of accidental alignment vanishingly small.
+A fundamental requirement for evidentiary acceptance is the presence of a non-linear phonetic shift. A valid reconstruction must demonstrate a systematic divergence across all three branches. This is formalized in the Glottalic Shift Matrix, which requires a triangulation of phonetic outcomes:
+\begin{itemize}
+    \item \textbf{Branch A (Vedic):} Voiced stop reflex.
+    \item \textbf{Branch B (Tamil):} Voiceless stop reflex.
+    \item \textbf{Branch C (Tibetan):} Aspirated stop reflex.
+\end{itemize}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{lllll} \toprule
-\textbf{Root Type} & \textbf{Outcome A (Vedic)} & \textbf{Outcome B (Tamil)} & \textbf{Outcome C (Tibetan)} & \textbf{Status} \\ \midrule
-Linear & *d & *d & *d & \textbf{Rejected} (Loan?) \\
-Binary & *d & *t & *t & \textbf{Suspicious} \\
-Triangulated & *d & *t & *th & \textbf{Accepted} \\ \bottomrule
-\end{tabular}
-\caption{The Decision Logic for Signal Acceptance.}
-\end{table}
-
-\section{The Zero-Shot Verification Standard}
-Finally, the project adheres to the \textbf{Zero-Shot Verification Standard}. Our models are not merely tested on how well they fit known data, but on how well they predict the structure of \textit{unseen} data. As documented in Chapter 7, our Hidden Markov Model (HMM) was trained on 80\% of the Indus Valley Script corpus and tasked with predicting the transitions of the remaining 20\% held-out set. The result—a decisive log-likelihood advantage—constitutes the 'External Witness' required for scientific acceptance.
+\section{The Predictive Verification Standard}
+Final validation is achieved through a zero-shot predictive protocol. As documented in subsequent chapters, models are evaluated on their ability to predict structural properties in unseen data, specifically within the corpus of the Indus Valley Script. This ensures that the results reflect persistent linguistic properties rather than model over-fitting.
