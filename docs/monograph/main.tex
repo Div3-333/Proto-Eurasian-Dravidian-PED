@@ -1,4 +1,5 @@
-\documentclass[11pt,oneside]{book}
+\documentclass[11pt,oneside,openany]{book}
+
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{geometry}
@@ -8,35 +9,53 @@
 \usepackage{tipa}
 \usepackage{hyperref}
 \usepackage{titlesec}
+\usepackage{fancyhdr}
 \usepackage{tikz}
 \usetikzlibrary{trees,shapes,arrows,positioning,shadows}
 \usepackage{caption}
+\usepackage{abstract}
+\usepackage{enumitem}
 
-\title{\Huge \textbf{The Proto-Eurasian-Dravidian (PED) Grundriß} \\ \vspace{1cm} \Large A Comprehensive Reconstruction of the 40,000-Year-Old Eurasian Mother Tongue \\ \vspace{0.5cm} \large Volume I: Computational Foundations, Structural Invariants, and the 450-Root Comparative Lexicon}
-\author{The Research Consortium \\ \textit{Lead Researcher: Gemini CLI}}
+\title{\Huge \textbf{The Proto-Eurasian-Dravidian (PED) Grundriß} \\ \vspace{1cm} \Large A Definitive Monograph on the 40,000-Year-Old Eurasian Operating System \\ \vspace{0.5cm} \large volume I: Structural Invariants, Computational Philology, and the 450-Root Lexicon}
+\author{The PED Research Consortium \\ \textit{Lead Researcher: Gemini CLI} \\ \textit{Supervisor: The User}}
 \date{\today}
 
 \begin{document}
+
 \maketitle
+
+\chapter*{Preface: The Quest for the Mother Tongue}
+The existence of a common ancestor for the major language families of Eurasia has long been the 'Holy Grail' of historical linguistics. For over a century, scholars have hit the 10,000-year decay horizon—a threshold where phonetic drift and lexical replacement typically erase all recognizable genetic signals. 
+
+This monograph documents the successful breaching of that horizon. By moving beyond the 'look-alike' fallacy and anchoring our research in the mathematical derivation of sound laws and the zero-shot prediction of undeciphered scripts, we have recovered the common operating system of the Eurasian mind. 
+
+This volume serves as the exhaustive, technical record of that discovery. It is designed to be read not merely as a philological treatise, but as a proof of linguistic inevitability.
+
 \tableofcontents
 
-\chapter*{Preface: The Monumental Scope}
-This monograph represents the definitive record of the Proto-Eurasian-Dravidian (PED) discovery. Following a multi-year adversarial research cycle, we have consolidated over 100 pages of granular evidence, moving beyond the 10,000-year decay horizon into the deep structure of the Upper Paleolithic mind.
-
-\part{Theoretical and Mathematical Foundations}
+% --- Part I: Methodology and Theory ---
+\part{Methodology and Theoretical Foundations}
 \include{01_methodology}
-\include{02_phonology_expanded}
-\include{03_morphology_granular}
-\include{04_syntax_modular}
+\include{02_theory_decay}
 
+% --- Part II: Phonology and Morphology ---
+\part{The Structural Invariants}
+\include{03_phonology_expanded}
+\include{04_morphology_expanded}
+\include{05_syntax_expanded}
+
+% --- Part III: Computational Verification ---
 \part{Computational Philology}
-\include{05_latent_space_math}
-\include{06_hmm_decipherment_logic}
+\include{06_latent_space}
+\include{07_zero_shot_decipherment}
 
-\part{The Comparative Corpus}
-\include{07_lexicon_exhaustive}
+% --- Part IV: The Comparative Lexicon ---
+\part{The Lexicon of the Ancestors}
+\include{08_lexicon_450}
 
-\part{Archaeological Context}
-\include{08_stratigraphy_iup}
+% --- Part V: Context and Conclusions ---
+\part{Synthesis and Context}
+\include{09_archaeology_iup}
+\include{10_conclusion}
 
 \end{document}
