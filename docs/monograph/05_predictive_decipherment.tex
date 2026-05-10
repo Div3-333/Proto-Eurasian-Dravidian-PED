@@ -7,7 +7,7 @@ Linguistic reconstructions of the antiquity proposed in this study (c. 38,000 BP
 To mitigate the risk of researcher bias, a Zero-Shot predictive protocol was implemented. This methodology focuses exclusively on structural sequence modeling.
 
 \subsection{Data Processing and Encoding}
-The Mahadevan/Wells corpus (4,968 inscriptions) was utilized. All hypothesized translations and semantic labels were purged, reducing the dataset to numeric sign identifiers.
+The Mahadevan/Wells corpus (4,968 inscriptions) was utilized. All hypothesized translations and semantic labels were purged. To ensure structural integrity, the dataset was normalized to Third Normal Form (3NF), strictly purging all '000' delimiter pollution that could artificially inflate transitional probabilities. This reduced the dataset to pure, continuous numeric sign sequences.
 
 \subsection{Model Training and Evaluation}
 The corpus was divided into a Training Set (80\%) and a Held-Out Validation Set (20\%). An unsupervised Hidden Markov Model (HMM) was trained exclusively on the structural transitions of the training set using the Baum-Welch algorithm.
@@ -19,23 +19,34 @@ To ensure statistical significance, the PED-aligned model was evaluated against 
 \centering
 \begin{tabular}{ll} \toprule
 \textbf{Model Configuration} & \textbf{Log-Likelihood (Held-Out)} \\ \midrule
-Zipfian Null Model (Empirical Frequencies) & -14,183.17 \\
-PED-Learned Model (Structural Syntax) & -13,138.51 \\ \midrule
-\textbf{Differential Accuracy ($\Delta LL$)} & \textbf{+1,044.66} \\ \bottomrule
+Zipfian Null Model (Empirical Frequencies) & -12,582.11 \\
+PED-Learned Model (Structural Syntax) & -11,603.73 \\ \midrule
+\textbf{Differential Accuracy ($\Delta LL$)} & \textbf{+978.38} \\ \bottomrule
 \end{tabular}
 \caption{Zero-Shot Results against Zipfian Baseline.}
 \end{table}
 
-The resulting log-likelihood advantage of 1,044.66 confirms that Harappan inscriptions contain a persistent, highly rigid, non-random syntactic structure.
+The resulting log-likelihood advantage of 978.38 confirms that Harappan inscriptions contain a persistent, highly rigid, non-random syntactic structure.
 
-\section{Analysis of the Emission Matrix: Sign 740}
-The unsupervised HMM successfully clustered the Harappan signs into distinct structural states without human labeling. However, a rigorous analysis of the Emission Matrix reveals the true nature of this syntax.
+\section{Analysis of the Emission Matrix}
+The unsupervised HMM successfully clustered the Harappan signs into distinct structural states without human labeling. A rigorous analysis of the Emission Matrix reveals the true nature of this syntax.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|l|l} \toprule
+\textbf{S0 (Agentive)} & \textbf{S1 (Target/Suffix)} & \textbf{S2 (Verb)} & \textbf{S3 (Terminal)} \\ \midrule
+Sign 002: 11.39\% & \textbf{Sign 740: 41.19\%} & Sign 002: 9.52\% & Sign 590: 5.35\% \\
+Sign 240: 6.19\% & Sign 400: 10.31\% & Sign 861: 4.65\% & Sign 220: 5.25\% \\
+Sign 033: 4.20\% & Sign 520: 6.82\% & Sign 817: 4.14\% & Sign 176: 4.81\% \\
+Sign 220: 4.00\% & Sign 390: 4.99\% & Sign 820: 3.77\% & Sign 760: 4.79\% \\
+Sign 235: 3.92\% & Sign 090: 3.68\% & Sign 060: 3.61\% & Sign 032: 4.35\% \\ \bottomrule
+\end{tabular}
+\caption{Top 5 Signs Emitted per Syntactic State (Normalized Data).}
+\end{table}
 
 \subsection{The Ancestral Agglutinative Signature}
-The model's State 1 is dominated by a single emission: \textbf{Sign 740 (the "Jar" sign)} at an overwhelming 37.51\% probability. Structural analysis by Mahadevan and Parpola has previously established Sign 740 as a terminal suffix, likely representing an oblique or genitive case marker. 
+The model's State 1 is dominated by a single emission: \textbf{Sign 740 (the "Jar" sign)} at an overwhelming 41.19\% probability. Structural analysis by Mahadevan and Parpola has previously established Sign 740 as a terminal suffix, likely representing an oblique or genitive case marker. 
 
 By mathematically isolating this massive, repeating suffix at the end of sequences, the unsupervised HMM provides compelling evidence that the Harappan language utilizes an agglutinative, right-branching syntax. We argue that this is not merely a regional innovation, but the direct preservation of the ancestral PED 'brick-stack' syntactic invariant (as defined in Chapter 3). 
 
-Agglutination is a highly conservative typological feature. While this framework is most famously preserved in the Southern Node (Proto-Dravidian, Uralic, Altaic), its presence in the 2500 BCE archaeological record demonstrates that the rigid, modular stacking of grammatical markers was the primary structural mechanism of the Eurasian mother tongue prior to the fusional innovations that later defined the Western (Indo-European) branch. 
-
-\textit{(Note: Future iterations of the IVS dataset must implement Third Normal Form (3NF) normalization to purge "000" delimiter pollution, which currently bleeds across all transition states.)}
+Agglutination is a highly conservative typological feature. While this framework is most famously preserved in the Southern Node (Proto-Dravidian, Uralic, Altaic), its presence in the 2500 BCE archaeological record demonstrates that the rigid, modular stacking of grammatical markers was the primary structural mechanism of the Eurasian mother tongue prior to the fusional innovations that later defined the Western (Indo-European) branch.

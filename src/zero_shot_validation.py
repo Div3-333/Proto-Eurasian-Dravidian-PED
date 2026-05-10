@@ -18,7 +18,7 @@ def run_zipfian_validation():
     for text in df['text'].dropna():
         clean_text = str(text).strip("+[]/").replace(" ", "")
         if not clean_text or clean_text == "000": continue
-        signs = [int(s) for s in clean_text.replace("[", "").replace("]", "").split("-") if s.isdigit()]
+        signs = [int(s) for s in clean_text.replace("[", "").replace("]", "").split("-") if s.isdigit() and int(s) != 0]
         if len(signs) > 2:
             sequences.append(np.array(signs).reshape(-1, 1))
 
