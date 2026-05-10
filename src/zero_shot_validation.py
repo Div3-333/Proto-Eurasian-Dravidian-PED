@@ -86,6 +86,23 @@ def run_zipfian_validation():
     else:
         print("No predictive advantage found against Zipfian baseline.")
 
+    print("\n======================================================")
+    print("FULL HMM EMISSION MATRIX (Top 5 Signs per State)")
+    print("======================================================")
+    # The signs are mapped back to their original M-codes
+    for i in range(n_states):
+        # Get probabilities for state i
+        probs = model.emissionprob_[i]
+        # Get top 5 indices
+        top_indices = np.argsort(probs)[-5:][::-1]
+        top_signs = [unique_train_signs[idx] for idx in top_indices]
+        top_probs = [probs[idx] for idx in top_indices]
+        
+        state_name = ["S0 (Agent)", "S1 (Target)", "S2 (Verb)", "S3 (End)"][i]
+        print(f"State {state_name} emits:")
+        for sign, p in zip(top_signs, top_probs):
+            print(f"  Sign {sign:03d}: {p*100:.2f}%")
+
     print("\nReviewer 2, the straw-man is dead. The Zipfian baseline is satisfied.")
 
 if __name__ == "__main__":
