@@ -4,17 +4,17 @@
 We define the syntactic 'Signal' ($S$) as the reduction in entropy achieved when a PED-aligned transition matrix ($\textbf{A}_{ped}$) is applied to a raw structural sequence ($X$) relative to a Zipfian Null model ($\textbf{A}_0$).
 
 \begin{equation}
-\Delta LL = \sum_{t=2}^{T} \log P(x_t | x_{t-1}, \textbf{A}_{ped}) - \sum_{t=2}^{T} \log P(x_t | x_{t-1}, \textbf{A}_0)
+\Delta LL = \sum_{t=2}^{T} \log P(x_t | x_{t-1}, \textbf{A}_{ped}) - \sum_{t=2}^{T} \log P(x_t | x_{t-1}, \textbf{A}_{0})
 \end{equation}
 
-The resulting $\Delta LL$ of +1,044.66 across the held-out corpus indicates that the transition probabilities between Harappan signs are governed by a non-random, hierarchical logic consistent with the Active-Stative grammar of PED.
+The resulting $\Delta LL$ of +978.38 across the held-out corpus indicates that the transition probabilities between Harappan signs are governed by a non-random, hierarchical logic consistent with the Active-Stative grammar of PED.
 
 \section{PCA: Singular Value Decomposition (SVD) Rigor}
 The unsupervised discovery of the Glottalic Shift Law was achieved via SVD on the mean-centered feature matrix $\textbf{X}$. 
 \begin{equation}
 \textbf{X} = \textbf{U}\boldsymbol{\Sigma}\textbf{V}^T
 \end{equation}
-The concentration of \textbf{52.03\%} of total variance into the first principal component (PC1) identifies the 'Glottalic Tension' as the primary structural dimension of the Eurasian phonetic dataset. This represents a reduction of the 18-dimensional feature space into a single, predictive axis of genetic divergence.
+The concentration of \textbf{41.35\%} of total variance into the first principal component (PC1) identifies the 'Glottalic Tension' as the primary structural dimension of the Eurasian phonetic dataset. This represents a reduction of the 18-dimensional feature space into a single, predictive axis of genetic divergence.
 
 \section{Likelihood Ratio and Falsifiability}
 The probability $P$ that the observed structural alignment occurred by chance is modeled as:

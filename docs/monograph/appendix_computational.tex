@@ -1,36 +1,38 @@
 \chapter{Computational Appendix: Reproducibility and Data Transparency}
 
 \section{Principal Component Analysis (PCA) Model}
-This appendix provides the Python implementation of the PCA utilized in Chapter 4 to identify emergent latent structures in the phonological dataset. The script includes the population expansion logic ($N=500$) and stochastic noise generation required to ensure statistical robustness.
+This appendix provides the Python implementation of the PCA utilized in Chapter 4 to identify emergent latent structures in the phonological dataset. 
 
 \begin{verbatim}
 import numpy as np
 from sklearn.decomposition import PCA
 
 def run_real_unsupervised_discovery():
-    # Base feature vectors (18-dimensional concatenated: Vedic, Tamil, Tibetan)
-    # Binary Features: [Voice, SpreadGlottis, ConstrictedGlottis, Labial, Coronal, Dorsal]
+    # Feature Vectors: [Voice, SpreadGlottis, ConstrictedGlottis, 
+    # Labial, Coronal, Dorsal]
+    
+    # 18-dimensional concatenated vectors: [Vedic, Tamil, Tibetan]
     set_P = [1,0,0, 1,0,0,  0,0,0, 1,0,0,  0,1,0, 1,0,0] # Labials
     set_T = [1,0,0, 0,1,0,  0,0,0, 0,1,0,  0,1,0, 0,1,0] # Dentals
     set_K = [1,0,0, 0,0,1,  0,0,0, 0,0,1,  0,1,0, 0,0,1] # Velars
-    set_M = [1,0,0, 1,0,0,  1,0,0, 1,0,0,  1,0,0, 1,0,0] # Nasals (Control)
-    set_S = [0,0,0, 0,1,0,  0,0,0, 0,1,0,  0,0,0, 0,1,0] # Fricatives (Control)
+    set_M = [1,0,0, 1,0,0,  1,0,0, 1,0,0,  1,0,0, 1,0,0] # Nasals
+    set_S = [0,0,0, 0,1,0,  0,0,0, 0,1,0,  0,0,0, 0,1,0] # Fricatives
     
     bases = [set_P, set_T, set_K, set_M, set_S]
     np.random.seed(42)
     X = []
     
-    # Dataset Expansion to N=500 with 5% stochastic noise per feature
+    # Dataset Expansion to N=500 with bi-directional bit-flip noise
     for _ in range(100):
         for base in bases:
-            # 5% bit-flip probability mimics transcriptional/dialectal variation
-            noise = np.random.choice([0, 1], size=18, p=[0.95, 0.05])
-            variant = np.clip(np.array(base) + noise, 0, 1)
+            # 5% bit-flip probability ensures stochasticity without unidirectional bias
+            mask = np.random.choice([0, 1], size=18, p=[0.95, 0.05])
+            variant = np.array(base)
+            # XOR operation for true bi-directional bit-flipping (0<->1)
+            variant = np.bitwise_xor(variant, mask)
             X.append(variant)
             
     X = np.array(X)
-    
-    # Execute PCA
     pca = PCA(n_components=2)
     latent_space = pca.fit_transform(X)
     
@@ -49,7 +51,7 @@ import numpy as np
 n_states = 4
 model = hmm.CategoricalHMM(n_components=n_states, n_iter=200, random_state=42)
 
-# Categorical Sign-Mapping Pipeline:
+# Training protocol:
 # 1. Purge all semantic and lexical labels from CSV.
 # 2. Extract sign sequences (M-codes) from '+XXX-YYY+' string format.
 # 3. Filter sequences of length < 2. Purge '000' delimiter artifacts.
@@ -95,3 +97,4 @@ A representative sample of the cleaned structural data used for the HMM transiti
 \end{tabular}
 \caption{Representative 50-Seal Sample from the Cleaned Harappan Corpus.}
 \end{table}
+
