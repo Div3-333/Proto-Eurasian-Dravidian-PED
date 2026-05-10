@@ -1,27 +1,22 @@
 \chapter{Methodological Framework}
 
-\section{Epistemological Horizon of Comparative Philology}
-Traditional comparative linguistics is bounded by the accumulation of phonetic and semantic entropy. Beyond the 10,000-year mark, the genetic signal of a language family typically degrades until it is indistinguishable from stochastic noise. This study addresses this limitation by utilizing structural invariants and non-linear phonetic shifts that exhibit higher resistance to temporal decay than isolated lexical items.
+\section{Introduction}
+The reconstruction of language families over deep-time horizons (exceeding 10,000 years) has historically been limited by the accumulation of stochastic noise in phonetic and semantic signals. This study addresses this limitation by focusing on structural invariants that exhibit higher resistance to temporal decay than isolated lexical items.
 
-\section{Addressing the Constraints of Long-Range Comparison}
-Macro-family reconstructions have historically been scrutinized for the 'look-alike' fallacy, where coincidental phonetic similarities are mistaken for genetic relationship. To ensure statistical significance, this study implements a strict filter requiring non-linear phonetic triangulation across three distinct geographic and historical nodes.
+\section{Primary Data Anchoring}
+To minimize the compounding errors associated with theoretical reconstructions, this study utilizes primary attested data from the earliest available literary and archaeological records:
+\begin{itemize}
+    \item \textbf{Vedic Sanskrit (c. 1500 BCE):} The Rigvedic corpus serves as the primary anchor for the Western branch, preserving archaic stop contrasts and laryngeal coloring.
+    \item \textbf{Old Tamil (c. 300 BCE):} The Cankam literature provides the Southern anchor, documenting the laryngeal \textit{āytam} and gemination-based transitivity rules.
+    \item \textbf{Old Tibetan (c. 700 CE):} The Dunhuang manuscripts represent the Eastern anchor, capturing the transition from complex codas to tonogenetic systems.
+\end{itemize}
 
-\section{Structural Modeling and Signal Invariance}
-The methodology focuses on identifying systematic, predictive patterns. This study utilizes primary attested data from archaic literary and archaeological strata, anchoring the reconstruction in:
+\section{Predictive Verification Protocol}
+The study implements a two-stage verification process:
 \begin{enumerate}
-    \item \textbf{Vedic Sanskrit (c. 1500 BCE):} Providing high-resolution data on dental and velar stop contrasts.
-    \item \textbf{Old Tamil (c. 300 BCE):} Preserving laryngeal reflexes and gemination-based transitivity rules.
-    \item \textbf{Old Tibetan (c. 700 CE):} Documenting the transition from complex codas to tonogenesis.
+    \item \textbf{Unsupervised Latent Space Discovery:} Utilizing Principal Component Analysis (PCA) on phonetic feature vectors to determine if hypothesized sound laws emerge naturally from the data.
+    \item \textbf{Zero-Shot Archaeological Validation:} Utilizing a Hidden Markov Model (HMM) to predict the syntactic transitions of the Indus Valley Script (c. 2500 BCE) without pre-emptive semantic assignment.
 \end{enumerate}
 
-\section{The Probability of Independent Triangulation}
-The logical core of the PED hypothesis rests on the convergence of three independent variables. We define the probability of accidental convergence ($P_{acc}$) as the intersection of:
-\begin{itemize}
-    \item \textbf{Variable L (Linguistic):} The mathematical alignment of stop reflexes according to the Glottalic Shift Law.
-    \item \textbf{Variable A (Archaeological):} The stratigraphic correlation with the Initial Upper Paleolithic (IUP) micro-blade radiation (c. 38,000 BP).
-    \item \textbf{Variable S (Syntactic):} The zero-shot predictive accuracy on the held-out Indus Valley Script corpus.
-\end{itemize}
-By modeling these as independent events, the cumulative probability of the observed alignment occurring by chance is minimized, establishing a non-circular proof of genetic descent.
-
-\section{The Predictive Verification Standard}
-Structural validity is confirmed via a zero-shot predictive protocol. Models are evaluated on their performance in predicting structural properties in unseen datasets, specifically the transition probabilities in the Mahadevan corpus of the Indus Valley Script. This methodology ensures that the reconstructed 'Operating System' possesses predictive power rather than merely descriptive fit.
+\section{Triangulation Logic}
+The validity of the Proto-Eurasian-Dravidian (PED) hypothesis is assessed through the convergence of linguistic and archaeological datasets. The probability of accidental alignment across these independent variables is modeled using Bayesian inference, identifying the threshold of statistical significance for deep-time relationships.
