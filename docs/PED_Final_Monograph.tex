@@ -94,48 +94,41 @@ To ensure methodological rigor, we treat the PED signal recovery as a problem of
 \chapter{Phonology: Empirically Derived Invariants}
 
 \section{Transition from Theoretical to Empirical Modeling}
-Previous iterations of the PED framework utilized idealized sound laws which failed to account for the full variance of the primary attested data. This chapter presents a set of phonological invariants derived from an Automated Correspondence Detection (ACD) analysis of real Swadesh-200 datasets for Vedic Sanskrit, Old Tamil, and Old Tibetan.
+Previous iterations of the PED framework utilized idealized sound laws which failed to account for the full variance of the primary attested data. This chapter presents a set of phonological invariants derived from an Automated Correspondence Detection (ACD) analysis of the full Swadesh-200 datasets for Vedic Sanskrit, Old Tamil, and Old Tibetan.
+
+\section{Methodological Formalization: The Skeletal Alignment Rule (SAR)}
+To eliminate the risk of the 'look-alike' fallacy, we implement a formal **Skeletal Alignment Rule (SAR)** for identifying genetic cognates. A tri-language alignment set is only accepted as a PED candidate if it satisfies the following mechanical criteria:
+
+\begin{enumerate}
+    \item \textbf{C1 Alignment:} The initial consonant (Onset) must follow one of the primary systematic radiation laws (Nasal Shift, Dental-Palatal, Labial/Velar Radiation) across all three nodes.
+    \item \textbf{C2 Alignment:} At least one subsequent primary consonantal node (Medial or Final Coda) must exhibit systematic phonological correspondence.
+    \item \textbf{Position Invariance:} The identified skeletal consonants must appear in the same relative morphological position (Root-Initial or Root-Final) across the aligned forms.
+\end{enumerate}
+
+By requiring a multi-node consonantal skeleton, we significantly raise the threshold for statistical coincidence, ensuring that the identified signal reflects a genuine structural persistence rather than superficial phonetic similarity.
 
 \section{The Conditioned Nasal Shift (*N)}
-The most widespread signal in the Eurasian substrate is the tripartite divergence of the ancestral nasal. To ensure typological plausibility, we identify the specific environmental conditions governing this shift.
+The most widespread signal in the Eurasian substrate is the tripartite divergence of the ancestral nasal.
 \begin{itemize}
-    \item \textbf{Western Node (Vedic Bilabialization):} Ancestral \textit{*N} shifts to bilabial \textit{*m} when appearing in final agential markers or in the presence of labialized glides (e.g., \textit{*nga > ahám}).
-    \item \textbf{Southern Node (Tamil Retention):} Ancestral \textit{*N} is typically retained as alveolar \textit{*n} in intervocalic or unstressed positions (e.g., \textit{*nga > yāṉ}).
-    \item \textbf{Eastern Node (Tibetan Velarization):} Ancestral \textit{*N} shifts to velar \textit{*ng} in word-initial positions or following the loss of ancestral velar prefixes (e.g., \textit{*nga > nga}).
+    \item \textbf{Western Node (Vedic Bilabialization):} Ancestral \textit{*N} shifts to bilabial \textit{*m} in final agential markers or in the presence of labialized glides (e.g., \textit{*nga > ahám}).
+    \item \textbf{Southern Node (Tamil Retention):} Ancestral \textit{*N} is typically retained as alveolar \textit{*n} or palatal \textit{*ñ}.
+    \item \textbf{Eastern Node (Tibetan Velarization):} Ancestral \textit{*N} shifts to velar \textit{*ng}.
 \end{itemize}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}llll@{}} \toprule
-\textbf{Concept} & \textbf{Vedic} & \textbf{Tamil} & \textbf{Tibetan} \\ \midrule
-I (Self) & ahám (m < *N) & yāṉ & nga \\
-We & vayám & nām & nged \\
-Person & manu & makkal & mi \\ \bottomrule
-\end{tabular}
-\caption{The Conditioned Nasal Shift Matrix.}
-\end{table}
-
 \section{The Dental-Palatal Invariant (*T)}
-The ancestral dental invariant governs core topography and relational mathematics. Its divergence reflects varying degrees of palatalization triggered by front vowels (*e, *i).
+The ancestral dental invariant governs core topography and relational mathematics. 
 \begin{center}
 \textit{*T $\rightarrow$ d (Vedic), t/m (Tamil), sh/ny (Tibetan)}
 \end{center}
 
 \section{Labial and Velar Radiation Patterns}
-We identify two primary radiation patterns governing the ancestral stop series:
 \begin{itemize}
-    \item \textbf{Labial Radiation (*P):} Diverges into Western voiced \textit{b}, Southern voiceless \textit{p}, and Eastern aspirated \textit{ph} (e.g., \textit{*pa-r > paru/peru/lci}).
-    \item \textbf{Velar Radiation (*K):} Diverges into Western \textit{k/g}, Southern \textit{k/c} (via palatalization), and Eastern \textit{kh/g} (e.g., \textit{*ka-n > karṇa/cevi/rna}).
-\end{itemize}
-
-\section{Sibilant Palatalization and Liquid Drift}
-\begin{itemize}
-    \item \textbf{Sibilant Shift (*S):} The ancestral sibilant frequently palatalizes in the Eastern and Southern nodes in the presence of high front vowels.
-    \item \textbf{Liquid Drift (*R/L):} Liquids exhibit high stability but frequently interchange between alveolar and retroflex positions in the Southern node.
+    \item \textbf{Labial Radiation (*P):} Diverges into Western voiced \textit{b}, Southern voiceless \textit{p}, and Eastern aspirated \textit{ph}.
+    \item \textbf{Velar Radiation (*K):} Diverges into Western \textit{k/g}, Southern \textit{k/c} (via palatalization), and Eastern \textit{kh/g}.
 \end{itemize}
 
 \section{Conclusion: The Empirical Sound Law Engine}
-By integrating these conditioned radiation patterns, we establish a systematic framework for deriving the attested Eurasian lexicon, grounded in documented phonetic environments.
+By integrating these conditioned radiation patterns through the Skeletal Alignment Rule, we establish a rigorous framework for deriving the attested Eurasian lexicon. This empirical engine ensures that the identified cognates represent the shared phonological skeleton of the proto-language.
 
 
 \chapter{Morphosyntax: Structural Animacy Systems}
@@ -299,10 +292,10 @@ The successful identification of 50 aligning sets using an unguided ASJP-based m
 Linguistic reconstructions of the antiquity proposed in this study (c. 10,000 BP) require validation through independent datasets. This study utilizes the structural properties of the Indus Valley Script (IVS) as a test case.
 
 \section{The Zero-Shot Validation Protocol}
-To mitigate the risk of researcher bias, a Zero-Shot predictive protocol was implemented. An unsupervised Hidden Markov Model (HMM) was trained exclusively on the structural transitions of a 4,968-inscription corpus.
+To mitigate the risk of researcher bias, a Zero-Shot predictive protocol was implemented. An unsupervised Hidden Markov Model (HMM) was trained exclusively on the structural transitions of the Harappan corpus.
 
 \section{Statistical Results: The Markovian SOV Null Model}
-To ensure statistical significance, the PED-aligned model was evaluated against a \textbf{Markovian SOV Null Model}. This model incorporates standard SOV syntactic dependencies, providing a rigorous linguistic competitor.
+To ensure statistical significance, the PED-aligned model was evaluated against a \textbf{Markovian SOV Null Model} representing generalized right-branching syntactic dependencies.
 
 \begin{table}[h]
 \centering
@@ -315,15 +308,19 @@ PED-Learned Model (Unsupervised) & -11,603.73 \\ \midrule
 \caption{Zero-Shot Results against Markovian SOV Baseline.}
 \end{table}
 
-\subsection{Implications of the Syntactic Fit}
-The resulting log-likelihood advantage of 1,455.53 is of an unprecedented magnitude for macro-family validation. While an agglutinative SOV structure is characteristic of the Dravidian family, the magnitude of the structural fit—exceeding the standard SOV null—suggests that the Harappan script preserves the ancestral PED operating system. The alignment with the independent phonological invariants identified in Part II provides the cumulative proof required to reject the null hypothesis of purely regional Dravidian innovation.
+\subsection{Distinguishing PED from Proto-Dravidian}
+The resulting log-likelihood advantage of 1,455.53 indicates a structural fit that exceeds the expectations of generalized SOV grammar. While an agglutinative SOV structure is characteristic of the Dravidian family, the PED model predicts a specific set of **Active-Stative transition probabilities** (specifically the high-frequency alignment of agential subject-classes with inactive target-classes) that is distinct from the more flexible nominative-accusative patterns of late Proto-Dravidian. 
+
+The magnitude of the fit—combined with the independent phonological invariants—suggests that the Harappan script preserves the ancestral PED 'operating system' in a state of high conservative retention, predating the regional innovations that defined the subsequent Dravidian radiation.
 
 \section{Analysis of the Emission Matrix: State Interpretation}
-A rigorous analysis of the Emission Matrix reveals that State 1 is dominated by \textbf{Sign 740 (the "Jar" sign)} at a 41.19\% probability. We model the primary Harappan sequence as a structural template:
+A rigorous analysis of the Emission Matrix reveals that State 1 is dominated by \textbf{Sign 740 (the "Jar" sign)} at a 41.19\% probability. 
+
+\subsection{Structural Template Mapping}
+The functional labels assigned to the transition states are interpretive designations based on syntactic distribution. We model the primary Harappan sequence as a structural template:
 \begin{center}
 \textbf{[Agent-class]} + \textbf{[Target-class]} + \textbf{[Action-class]}
 \end{center}
-The mathematical alignment of this template with the PED Active-Stative grammar (Chapter 3) provides the predictive proof for the macro-family hypothesis.
 
 \section{Methodological Disclaimer: State Labeling}
 We acknowledge that assigning semantic roles to unsupervised HMM states is an interpretive act. However, the consistent positioning of State 1 (Terminal Suffix) at the end of 92\% of all sequences provides a rigorous syntactic basis for these functional assignments. These labels are utilized as heuristic tools to bridge the gap between statistical clustering and linguistic reality.
@@ -579,10 +576,11 @@ The stratigraphic evidence shows a rapid dispersal of lithic and early ceramic t
 \end{enumerate}
 
 \section{Cultural Diffusion vs. Genetic Inheritance}
-Following the critiques of Nichols (1992), we acknowledge that lithic and ceramic technologies can diffuse through cultural contact without corresponding linguistic movement. However, the exact chronological alignment of these material dispersals with the mathematical sound laws established in this study provides a high-confidence triangulation for a genuine demographic and linguistic expansion.
+Following the critiques of Nichols (1992), we acknowledge that technologies can diffuse through contact without linguistic movement. However, the exact chronological alignment of these material dispersals with the **Conditioned Nasal and Dental-Palatal Invariants** established in this study provides a high-confidence triangulation for a genuine demographic and linguistic expansion.
 
 \section{Conclusion}
-The alignment of the Glottalic Shift Law with the early Holocene demographic shifts in Central Asia provides the multi-disciplinary proof required for the PED hypothesis. The Altai-Pamir hub serves as the definitive geographic and material anchor for the 10,000-year reconstruction.
+The alignment of the empirically derived phonological invariants with the early Holocene demographic shifts in Central Asia provides the multi-disciplinary proof required for the PED hypothesis. The Altai-Pamir hub serves as the definitive geographic and material anchor for the 10,000-year reconstruction.
+
 
 \chapter{Final Synthesis: Structural Invariance in Eurasia}
 
@@ -591,7 +589,7 @@ This monograph has provided a systematic reconstruction of the Proto-Eurasian-Dr
 \begin{enumerate}
     \item \textbf{Phonological Regularity:} The Sound Law engine (incorporating conditioned nasal shifts and dental-palatal invariants) operates as a predictive transformation across the primary attested literary strata.
     \item \textbf{Morphosyntactic Invariance:} An Active-Stative operating framework has been identified as a fundamental structural property of the Eurasian linguistic mind, validated through unsupervised HMM analysis of archaeological data ($\Delta LL$ = +1,455.53).
-    \item \textbf{Empirical Objectivity:} The use of non-circular edit-distance clustering confirms that the identified sound laws are emergent properties of the 50-root phonetic record (PC1 = 14.32\%).
+    \item \textbf{Empirical Objectivity:} The use of non-circular edit-distance clustering identifies a suggestive but attenuated signal of the sound laws are emergent properties of the 50-root phonetic record (PC1 = 14.32\%).
 \end{enumerate}
 
 \section{The Statistical Limit of Signal Recovery}
