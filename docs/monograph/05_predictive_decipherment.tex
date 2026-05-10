@@ -7,7 +7,7 @@ Linguistic reconstructions of the antiquity proposed in this study (c. 38,000 BP
 To mitigate the risk of researcher bias, a Zero-Shot predictive protocol was implemented. This methodology focuses exclusively on structural sequence modeling.
 
 \subsection{Data Processing and Encoding}
-The Mahadevan/Wells corpus (4,968 inscriptions) was utilized. All hypothesized translations and semantic labels were removed, reducing the dataset to numeric sign identifiers.
+The Mahadevan/Wells corpus (4,968 inscriptions) was utilized. All hypothesized translations and semantic labels were purged, reducing the dataset to numeric sign identifiers.
 
 \subsection{Model Training and Evaluation}
 The corpus was divided into a Training Set (80\%) and a Held-Out Validation Set (20\%). An unsupervised Hidden Markov Model (HMM) was trained exclusively on the structural transitions of the training set using the Baum-Welch algorithm.
@@ -34,8 +34,8 @@ The unsupervised HMM successfully clustered the Harappan signs into distinct str
 \subsection{The Ancestral Agglutinative Signature}
 The model's State 1 is dominated by a single emission: \textbf{Sign 740 (the "Jar" sign)} at an overwhelming 37.51\% probability. Structural analysis by Mahadevan and Parpola has previously established Sign 740 as a terminal suffix, likely representing an oblique or genitive case marker. 
 
-By mathematically isolating this massive, repeating suffix at the end of sequences, the unsupervised HMM provides compelling evidence that the Harappan language utilizes an agglutinative, right-branching syntax. We argue that this is not merely a regional development, but the direct preservation of the ancestral PED 'brick-stack' syntactic invariant (as defined in Chapter 3). 
+By mathematically isolating this massive, repeating suffix at the end of sequences, the unsupervised HMM provides compelling evidence that the Harappan language utilizes an agglutinative, right-branching syntax. We argue that this is not merely a regional innovation, but the direct preservation of the ancestral PED 'brick-stack' syntactic invariant (as defined in Chapter 3). 
 
-While this agglutinative framework is most famously preserved in the conservative Southern Node (Proto-Dravidian), its presence in the 2500 BCE archaeological record demonstrates that the rigid, modular stacking of grammatical markers was the primary structural mechanism of the Eurasian mother tongue prior to the fusional innovations of the Western branch.
+Agglutination is a highly conservative typological feature. While this framework is most famously preserved in the Southern Node (Proto-Dravidian, Uralic, Altaic), its presence in the 2500 BCE archaeological record demonstrates that the rigid, modular stacking of grammatical markers was the primary structural mechanism of the Eurasian mother tongue prior to the fusional innovations that later defined the Western (Indo-European) branch. 
 
 \textit{(Note: Future iterations of the IVS dataset must implement Third Normal Form (3NF) normalization to purge "000" delimiter pollution, which currently bleeds across all transition states.)}
