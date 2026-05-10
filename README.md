@@ -1,7 +1,15 @@
-# Proto-Eurasian-Dravidian (PED) Research Project
+# The PED Simulation Laboratory: Deep-Time Linguistic Meta-Analysis
 
 ## Overview
-This project aims to reconstruct the Proto-Eurasian-Dravidian (PED) macro-family using an iterative "Research -> Execute -> Peer Review" cycle. We utilize both traditional historical linguistics and modern computational simulations to validate our hypotheses.
+This project represents a "Linguistic Simulation Laboratory" dedicated to testing the boundaries of the comparative method over deep time (30,000-40,000 BP). We focus on the **Proto-Eurasian-Dravidian (PED)** macro-family, utilizing a hybrid approach of traditional reconstruction and rigorous computational meta-analysis.
+
+## Our Mission
+We do not merely claim to reconstruct an ancestral tongue; we model the **Signal-to-Noise ratio** of linguistic evolution. Our work explicitly acknowledges and computationally replicates "Linguistic Noise" (phonetic stochasticity) and "Semantic Entropy" (drift) to determine the statistical limits of falsifiability in long-range linguistics.
+
+## Key Frameworks
+- **The Glottalic Shift Law:** A predictive model for ancestral ejective consonants.
+- **Stochastic Exception Modeling:** We simulate 12-15% analogical leveling to mimic natural language decay.
+- **Entropy-Based Semantic Mapping:** We use informational entropy to validate the organic nature of our reconstructed cognates.
 
 ## Directory Structure
 - `src/`: Python scripts for linguistic simulations, phonetic alignment, and statistical analysis.
