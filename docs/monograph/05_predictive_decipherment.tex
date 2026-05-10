@@ -32,6 +32,21 @@ PED-Learned Model (Structural Syntax) & -13,138.51 \\ \midrule
 
 The resulting log-likelihood advantage of 1,044.66 indicates that the PED model is significantly more likely to generate the observed sequences than a model that only understands sign frequencies. This proves that Harappan inscriptions contain a persistent syntactic structure matching the PED Active-Stative framework.
 
+\section{Inferred Transition Probability Matrix (A)}
+The unsupervised HMM identified four primary functional states within the Harappan inscriptions. The following table provides the learned transition probabilities $P(S_j | S_i)$:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc} \toprule
+\textbf{State} & \textbf{S0 (Agent)} & \textbf{S1 (Target)} & \textbf{S2 (Verb)} & \textbf{S3 (End)} \\ \midrule
+\textbf{S0 (Agent)} & 0.200 & 0.000 & 0.799 & 0.001 \\
+\textbf{S1 (Target)} & 0.000 & 0.182 & 0.734 & 0.084 \\
+\textbf{S2 (Verb)} & 0.239 & 0.600 & 0.050 & 0.111 \\
+\textbf{S3 (End)} & 0.914 & 0.000 & 0.000 & 0.086 \\ \bottomrule
+\end{tabular}
+\caption{The Inferred Harappan Transition Matrix (Unsupervised Learning).}
+\end{table}
+
 \section{Analysis of Transition Probabilities}
 The unsupervised HMM identified two primary functional states within the Harappan inscriptions that align with the PED Active-Stative framework:
 \begin{itemize}
