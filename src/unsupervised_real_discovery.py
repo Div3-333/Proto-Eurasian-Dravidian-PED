@@ -1,12 +1,26 @@
 import numpy as np
 from sklearn.decomposition import PCA
 
+ASJP = {
+    'a': 'a', 'e': 'a', 'i': 'i', 'o': 'o', 'u': 'u',
+    'p': 'p', 'b': 'p', 'f': 'p', 'v': 'p',
+    't': 't', 'd': 't', 'th': 't',
+    'k': 'k', 'g': 'k', 'kh': 'k',
+    's': 's', 'z': 's', 'sh': 's', 'c': 's', 'j': 's',
+    'm': 'm', 'n': 'n', 'ng': 'n', 'ny': 'n',
+    'r': 'r', 'l': 'l', 'y': 'y', 'h': 'h'
+}
+
+def encode_asjp(word):
+    res = ""
+    for char in word:
+        res += ASJP.get(char, char)
+    return res
+
 def levenshtein_dist(s1, s2):
-    """Calculates the normalized Levenshtein distance."""
-    if len(s1) < len(s2):
-        return levenshtein_dist(s2, s1)
-    if len(s2) == 0:
-        return len(s1)
+    s1, s2 = encode_asjp(s1), encode_asjp(s2)
+    if len(s1) < len(s2): return levenshtein_dist(s2, s1)
+    if len(s2) == 0: return len(s1)
     previous_row = range(len(s2) + 1)
     for i, c1 in enumerate(s1):
         current_row = [i + 1]
@@ -18,84 +32,64 @@ def levenshtein_dist(s1, s2):
         previous_row = current_row
     return previous_row[-1] / max(len(s1), len(s2))
 
-def run_real_unsupervised_discovery():
-    """
-    Non-circular phonetic clustering using raw primary data strings.
-    We compare actual words from Vedic, Tamil, and Tibetan using edit distance
-    to see if 'Cognate Sets' naturally cluster closer than random controls.
-    """
-    print("--- PHASE 1: EMPIRICAL PHONETIC CLUSTERING (HARDENED) ---")
+def calculate_mean_distance(sets):
+    dists = []
+    for v, ta, ti in sets:
+        dists.append((levenshtein_dist(v, ta) + levenshtein_dist(ta, ti) + levenshtein_dist(v, ti)) / 3)
+    return np.mean(dists)
+
+def run_hardened_unsupervised_discovery():
+    print("--- PHASE 1: HARDENED PHONETIC CLUSTERING (WHOLE WORD ASJP) ---")
     
-    # 1. Hardened Primary Data Corpus (Actual Attested Strings)
-    # Cognate Candidates (The 10 roots most robustly aligned)
     cognates = [
-        ("daru", "taram", "shing"),   # Wood/Tree
-        ("dis", "tikku", "thig"),    # Point/Show
-        ("udan", "tuli", "thigs"),   # Water/Drop
-        ("asti", "iru", "way"),      # To Be
-        ("anga", "kan", "mkhyen"),   # Joint/Point
-        ("pela", "pal", "phel"),     # Split
-        ("bhar", "peru", "phar"),    # Carry
-        ("jannu", "kantu", "kun"),   # Knee/Angle
-        ("aham", "yan", "nga"),      # I
-        ("tvam", "ni", "khyod")      # Thou
+        ("aham", "yan", "nga"), ("tvam", "ni", "khyod"), ("vayam", "nam", "nged"),
+        ("idam", "itu", "di"), ("tat", "atu", "de"), ("aksi", "kan", "mig"),
+        ("karna", "cevi", "rna"), ("bhar", "peru", "phar"), ("eka", "onru", "gcig"),
+        ("dva", "irantu", "gnyis"), ("mahat", "peru", "che"), ("tvac", "tol", "pags"),
+        ("gam", "cel", "khye"), ("matsya", "min", "nya"), ("naman", "namam", "ming")
     ]
     
-    # Random Control Set
     controls = [
-        ("vaca", "ay", "kha"), 
-        ("nam", "vel", "po"), 
-        ("raj", "per", "la"),
-        ("div", "ari", "na"),
-        ("kal", "un", "du"),
-        ("agni", "ti", "me"),
-        ("matr", "ammu", "ma"),
-        ("eka", "on", "gcig"),
-        ("dasa", "tek", "bcu"),
-        ("svas", "ak", "lo")
+        ("vaca", "ay", "kha"), ("nam", "vel", "po"), ("raj", "per", "la"),
+        ("div", "ari", "na"), ("kal", "un", "du"), ("agni", "ti", "me"),
+        ("matr", "ammu", "ma"), ("dasa", "tek", "bcu"), ("svas", "ak", "lo"),
+        ("pada", "kai", "rkang"), ("dant", "pal", "so"), ("nas", "muku", "sna"),
+        ("sth", "nil", "sdod"), ("bhu", "pul", "byed"), ("krsna", "karu", "nag")
     ]
     
+    observed_cog_mean = calculate_mean_distance(cognates)
+    observed_ctrl_mean = calculate_mean_distance(controls)
+    observed_diff = observed_ctrl_mean - observed_cog_mean
+    
+    print(f"Observed Cognate Mean Dist: {observed_cog_mean:.4f}")
+    print(f"Observed Control Mean Dist: {observed_ctrl_mean:.4f}")
+    print(f"Observed Effect Size (Delta): {observed_diff:.4f}")
+
+    print("\nRunning 10,000 permutations...")
     all_sets = cognates + controls
-    N = len(all_sets)
-    print(f"Dataset: {N} aligned tri-language sets (10 Cognate vs 10 Control).")
+    combined_dist_pool = [ (levenshtein_dist(v, ta) + levenshtein_dist(ta, ti) + levenshtein_dist(v, ti))/3 for v, ta, ti in all_sets ]
     
-    # 2. Distance Matrix Calculation
-    internal_dists = []
-    for v, ta, ti in all_sets:
-        d1 = levenshtein_dist(v, ta)
-        d2 = levenshtein_dist(ta, ti)
-        d3 = levenshtein_dist(v, ti)
-        internal_dists.append((d1 + d2 + d3) / 3)
-        
-    # 3. PCA on Distance Profile
-    manifold = np.zeros((N, N))
-    for i in range(N):
-        for j in range(N):
-            d = 0
-            for k in range(3):
-                d += levenshtein_dist(all_sets[i][k], all_sets[j][k])
-            manifold[i, j] = d / 3
+    np.random.seed(42)
+    count_extreme = 0
+    N_perm = 10000
+    N_cog = len(cognates)
+    for _ in range(N_perm):
+        shuffled = np.random.permutation(combined_dist_pool)
+        perm_diff = np.mean(shuffled[N_cog:]) - np.mean(shuffled[:N_cog])
+        if perm_diff >= observed_diff: count_extreme += 1
             
+    p_value = count_extreme / N_perm
+    print(f"Empirical P-Value: {p_value:.4f}")
+    
     pca = PCA(n_components=2)
-    latent_space = pca.fit_transform(manifold)
-    explained_var = pca.explained_variance_ratio_
-    
-    print(f"Explained Variance (PC1): {explained_var[0]*100:.2f}%")
-    
-    # 4. Significance Test
-    mean_cog = np.mean(internal_dists[:10])
-    mean_ctrl = np.mean(internal_dists[10:])
-    
-    print(f"\n[ANALYSIS RESULT]")
-    print(f"Mean Normalized Edit Distance (Cognates): {mean_cog:.4f}")
-    print(f"Mean Normalized Edit Distance (Controls): {mean_ctrl:.4f}")
-    
-    if mean_cog < mean_ctrl:
-        p_improvement = (mean_ctrl - mean_cog) / mean_ctrl * 100
-        print(f"RESULT: Cognate sets are {p_improvement:.1f}% tighter than random controls.")
-        print("This confirms the signal is an objective property of the raw attested data.")
-    else:
-        print("RESULT: No significant clustering found. The signal has decayed into noise.")
+    manifold = np.zeros((30, 30))
+    for i in range(30):
+        for j in range(30):
+            d = 0
+            for k in range(3): d += levenshtein_dist(all_sets[i][k], all_sets[j][k])
+            manifold[i, j] = d / 3
+    pca.fit(manifold)
+    print(f"PCA PC1 Variance: {pca.explained_variance_ratio_[0]*100:.2f}%")
 
 if __name__ == "__main__":
-    run_real_unsupervised_discovery()
+    run_hardened_unsupervised_discovery()
