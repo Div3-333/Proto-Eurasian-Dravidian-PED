@@ -1,29 +1,33 @@
 \chapter{Methodological Framework: The Adversarial Protocol}
 
+\section{The Epistemological Horizon of Comparative Philology}
+Traditional comparative linguistics, since its formalization by the Neogrammarians in the 19th century, has been anchored by the \textit{Stammbaumtheorie} (family tree model). While this model has successfully reconstructed Proto-Indo-European (PIE) and Proto-Dravidian (PD) back to approximately 6,000–8,000 BP, it hits a seemingly impenetrable barrier at the 10,000-year mark. The fundamental problem is entropy: the gradual loss of phonetic and semantic signal over time.
+
 \section{The Failure of Traditional Long-Range Comparison}
-Mainstream historical linguistics has rightfully viewed macro-family reconstructions with extreme skepticism. The primary culprit is the 'look-alike' fallacy: the tendency for researchers to scan vast dictionaries for words that sound similar and share vague semantic links (e.g., 'fire' and 'burn'). Given a large enough dataset, such matches are statistically inevitable and mathematically meaningless.
+Mainstream historical linguistics has rightfully viewed macro-family reconstructions (e.g., Nostratic, Eurasiatic) with extreme skepticism. The primary culprit is the 'look-alike' fallacy: the tendency for researchers to scan vast dictionaries for words that sound similar and share vague semantic links (e.g., 'fire' and 'burn'). 
+
+\subsection{Case Study: The Apophenia of Similarity}
+Consider the often-cited match between the English 'bad' and the Persian 'bad.' Despite the perfect phonetic and semantic alignment, these words are entirely unrelated etymologically—the English 'bad' derives from Old English \textit{bæddel}, while the Persian word has a distinct Indo-Iranian origin. Given a large enough dataset (thousands of dialects across three continents), such matches are statistically inevitable and mathematically meaningless. To claim genetic relationship based on similarity is to mistake statistical noise for a signal.
 
 \section{The Adversarial Philology Protocol}
 To overcome the trap of confirmation bias, this project implemented the \textbf{Adversarial Philology Protocol}. Throughout the research cycle, a specialized 'Brutal Reviewer' (Reviewer 2) was tasked with dismantling the hypothesis at every stage. This forced the research to pivot from speculative pattern-matching to predictive structural modeling.
 
-\subsection{The Non-Linear Signal Constraint}
-We established a strict constraint: no lexical item is accepted as evidence unless it follows a non-linear phonetic shift. If the PED root for 'wood' was simply *daru and surfaced as *daru in all three families, it would be dismissed as a probable loanword or coincidental nursery word. A valid PED root must exhibit the \textbf{Glottalic Shift Matrix}:
-\begin{itemize}
-    \item \textbf{Vedic Node:} Shift to voiced stop (*d).
-    \item \textbf{Tamil Node:} Shift to voiceless stop (*t).
-    \item \textbf{Tibetan Node:} Shift to aspirated stop (*th).
-\end{itemize}
-This shift requires a 'triangulation' of three distinct phonetic outcomes, making the probability of accidental alignment vanishingly small.
+\subsection{Methodological Evolution through Friction}
+An early iteration of the PED hypothesis was rejected for relying too heavily on 'Proto-to-Proto' comparison. The reviewer argued that comparing two theoretical reconstructions (e.g., PIE and Proto-Dravidian) merely compounds the errors inherent in each theory. This friction forced a fundamental shift to \textbf{Primary Data Anchoring}, using only the most archaic attested strata of Vedic Sanskrit, Old Tamil, and Old Tibetan as our foundational data points.
 
-\section{Primary Data vs. Theoretical Abstractions}
-A secondary methodological breakthrough was the abandonment of 'Proto-to-Proto' comparison. Reconstructions like PIE or Proto-Dravidian are themselves theories. Comparing a theory to a theory creates a hall of mirrors. 
+\section{The Non-Linear Signal Constraint}
+We established a strict constraint: no lexical item is accepted as evidence unless it follows a non-linear phonetic shift. A valid PED root must exhibit the \textbf{Glottalic Shift Matrix}. This shift requires a 'triangulation' of three distinct phonetic outcomes, making the probability of accidental alignment vanishingly small.
 
-Instead, we utilize \textbf{Primary Data Anchors}:
-\begin{enumerate}
-    \item \textbf{Vedic Sanskrit (Rigveda):} The most archaic attested Indo-European stratum, preserving the precise dental/velar contrasts.
-    \item \textbf{Old Tamil (Caṅkam):} The most archaic Southern stratum, preserving the laryngeal \textit{āytam} and gemination rules.
-    \item \textbf{Old Tibetan (Dunhuang):} The most archaic Eastern stratum, capturing the transition from codas to tonogenesis.
-\end{enumerate}
+\begin{table}[h]
+\centering
+\begin{tabular}{lllll} \toprule
+\textbf{Root Type} & \textbf{Outcome A (Vedic)} & \textbf{Outcome B (Tamil)} & \textbf{Outcome C (Tibetan)} & \textbf{Status} \\ \midrule
+Linear & *d & *d & *d & \textbf{Rejected} (Loan?) \\
+Binary & *d & *t & *t & \textbf{Suspicious} \\
+Triangulated & *d & *t & *th & \textbf{Accepted} \\ \bottomrule
+\end{tabular}
+\caption{The Decision Logic for Signal Acceptance.}
+\end{table}
 
 \section{The Zero-Shot Verification Standard}
-Finally, the project adheres to the \textbf{Zero-Shot Verification Standard}. Our models are not merely tested on how well they fit known data, but on how well they predict the structure of \textit{unseen} data. This was achieved through the HMM training on the held-out Mahadevan corpus, proving that the PED syntax is a predictive physical property of the archaeological record.
+Finally, the project adheres to the \textbf{Zero-Shot Verification Standard}. Our models are not merely tested on how well they fit known data, but on how well they predict the structure of \textit{unseen} data. As documented in Chapter 7, our Hidden Markov Model (HMM) was trained on 80\% of the Indus Valley Script corpus and tasked with predicting the transitions of the remaining 20\% held-out set. The result—a decisive log-likelihood advantage—constitutes the 'External Witness' required for scientific acceptance.
